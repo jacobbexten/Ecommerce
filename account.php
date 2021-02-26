@@ -68,7 +68,7 @@
         </ul>
     </div>
 
-    <h2>Your Cart:</h2>
+    <h1>Your Cart:<br></h1>
 
     <?php
     
@@ -90,26 +90,37 @@
     
     $total = 0;
 
-    print_r($_SESSION['cart']);
-
     if(isset($_SESSION['cart'])){
         foreach($_SESSION['cart'] as $product){
+            echo '<div>';
+            echo '<img src="';
             echo $product->photo;
+            echo '" style="width:20%"/>';
+            echo '<h2>';
             echo $product->name;
+            echo '</h2>';
+            echo '<p>';
             echo $product->description;
-            echo '$' . $product->price;
+            echo '</p>';
+            echo '<h3>';
+            echo '$';
+            echo $product->price;
+            echo '</h3>';
+            echo '<br>';
+
+            echo '<br>';
+            echo '</div>';
+            $total = $total + $product->price;
         }
     }
-    //$total = $product->price;
+    
     echo 'Your total is $' . $total;
 
     ?>
 
-
-
-    <form action="account_confirm.php" method="post" style="border:1px solid #ccc">
+    <form action="submitorder.php" method="post" style="border:1px solid #ccc">
         <div class="container">
-
+        <button>Submit Order</button></a>
         </div>
     </form>
 
