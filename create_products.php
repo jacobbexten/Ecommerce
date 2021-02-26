@@ -1,6 +1,6 @@
 ﻿<?php
 
-include "products.php";
+
 
 $products = array();
 $products[0] = new product("classicmix", 0 , "Our classic pancake mix in a 5lb bag.", 9.99, "Mix1.jpg");

@@ -71,12 +71,28 @@
     <h2>Your Cart:</h2>
 
     <?php
+    
+    if (isset($_POST['id1'])){
+        array_push($_SESSION['cart'], $_SESSION['products'][0]);
+    }
+    
+    if (isset($_POST['id2'])){
+        array_push($_SESSION['cart'], $_SESSION['products'][1]);
+    }
 
+    if (isset($_POST['id3'])){
+        array_push($_SESSION['cart'], $_SESSION['products'][2]);
+    }
+
+    if (isset($_POST['id4'])){
+        array_push($_SESSION['cart'], $_SESSION['products'][3]);
+    }
+    
     $total = 0;
 
     print_r($_SESSION['cart']);
 
-    if(isset($_SESSION['cart']) && !empty($product)){
+    if(isset($_SESSION['cart'])){
         foreach($_SESSION['cart'] as $product){
             echo $product->photo;
             echo $product->name;

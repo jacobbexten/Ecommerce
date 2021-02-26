@@ -4,9 +4,12 @@
     include 'products.php';
 
     session_start();
+    include 'create_products.php';
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     }
-    $_SESSION['cart'] = array();
+    if(!isset($_SESSION['cart'])) {
+        $_SESSION['cart']=array();
+    }
 
 
 ?>
@@ -125,11 +128,7 @@
                 <button type="submit">ADD TO CART</button>
             </div>
             </form>
-            <?php
-                //if (isset($_POST['id1'])){
-                    array_push($_SESSION['cart'], $_SESSION['products'][0]);
-                //}
-            ?>
+
         </div>
 
         <div class="column">
@@ -143,11 +142,7 @@
                 <button type="submit">ADD TO CART</button>
             </div>
             </form>
-            <?php
-                if (isset($_POST['id2'])){
-                    array_push($_SESSION['cart'], $_SESSION['products'][1]);
-                }
-            ?>
+
         </div>
 
         <div class="column">
@@ -158,14 +153,10 @@
                 <p class="price">$7.99</p>
                 <p>Our classic maple syrup.</p>
                 <input type="hidden" name="id3" value="0"</>
-                <button type="submit" name="add2">ADD TO CART</button>
+                <button type="submit">ADD TO CART</button>
             </div>
             </form>
-            <?php
-                if (isset($_POST['id3'])){
-                    array_push($_SESSION['cart'], $_SESSION['products'][2]);
-                }
-            ?>
+
         </div>
 
         <div class="column">
@@ -176,14 +167,10 @@
                 <p class="price">$7.99</p>
                 <p>Our locally sourced strawberry syrup.</p>
                 <input type="hidden" name="id4" value="0"</>
-                <button type="submit" name="add3">ADD TO CART</button>
+                <button type="submit">ADD TO CART</button>
             </div>
             </form>
-            <?php
-                if (isset($_POST['id4'])){
-                    array_push($_SESSION['cart'], $_SESSION['products'][3]);
-                }
-            ?>
+
         </div>
     </div>
 
