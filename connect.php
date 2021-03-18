@@ -2,8 +2,7 @@
 //webdev database
     $servername = "webdev.cs.umt.edu";
     $username = "jb110725";
-    $password = "IeFa5AemaThaisohhaeduSha0nieNo";
-    //$password = "kaiboop4oegooneec0caiPaef2sha4";
+    //$password
     $database = "jb110725";
 
 
