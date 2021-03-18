@@ -44,13 +44,23 @@
 
             <li><a href="account.php">Cart</a></li>
 
-            <li><a href="login.php">Log In</a></li>
-
-            <li><input type="text" placeholder="Search... "></li>
+            <?php
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
+                    echo '<li><a>' . $_SESSION['username'] . '</a></li>';
+                    echo '<li><a href="logout.php"><span>Logout</span></a></li>';
+                }
+                else{
+                    echo '<li><a href="login.php">Log In</a></li>';
+                    echo '<li><a href="signup.php">Sign Up</a></li>';
+                }
+            ?>
 
         </ul>
     </div>
 
-    <h2>You are logged out!</p>
+    <h2>You are logged out!</h2>
+    <?php
+        include('footer.php');
+    ?>
 </body>
 </html>

@@ -52,7 +52,7 @@
 
             <li><a href="contact.php">Contact</a></li>
 
-            <li><a href="account.php">Account</a></li>
+            <li><a href="account.php">Cart</a></li>
 
             <?php
             if($_SESSION['loggedin']==true){
@@ -69,11 +69,14 @@
             }
             ?>
 
-            <li><input type="text" placeholder="Search... "></li>
 
         </ul>
     </div>
 
     <h2>Thanks for submitting your order. We will send you an email confirmation shortly.</p>
+
+    <?php
+    unset($_SESSION['cart']);
+    ?>
 </body>
 </html>

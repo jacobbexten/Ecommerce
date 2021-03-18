@@ -1,10 +1,5 @@
 ﻿<?php
-
-
-    include 'products.php';
-
     session_start();
-    include 'create_products.php';
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     }
     if(!isset($_SESSION['cart'])) {
@@ -66,114 +61,287 @@
             background-color: #eeeeee;
         }
 
-        @media screen and (max-width: 600px) {
-            .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-
-            }
-        }
         align {
             display: flex;
             justify-content: center;
             flex-direction: row;
         }
+        .SearchBar {
+            padding: 10px;
+            text-align: center;
+            width: 80%;
+        }
+
     </style>
 
 </head>
 
 <body>
 
-    <h1>Montana Pancake Co</h1>
+    <?php
+        include('header.php');
+        include('connect.php');
+    ?>
 
-    <div class="topnav">
-        <ul>
+    
 
-            <li><a class="active" href="index.php">Home</a></li>
 
-            <li><a href="store.php">Store</a></li>
+    <center>
+        <div class="btn-group" style="width:80%" id="myBtnContainer">
+            <button class="btn active" style="width:10%" onclick="filterSelection('all')"> All</button>
+            <button class="btn" style="width:10%" onclick="filterSelection('mix')"> Pancake Mix</button>
+            <button class="btn" style="width:10%" onclick="filterSelection('syrup')"> Syrup</button>
+            <button class="btn" style="width:10%" onclick="filterSelection('apparel')"> Apparel</button>
+        </div>
+    </center>
 
-            <li><a href="about.php">About</a></li>
-
-            <li><a href="contact.php">Contact</a></li>
-
-            <li><a href="account.php">Cart</a></li>
-
+    <div class="filter" id="myProducts">
+        <center>
+            <div class="SearchBar">
+                <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Search...">
+            </div>
+        </center>
+        <div class="storecards">
             <?php
-            if($_SESSION['loggedin']==true){
-                echo '<li><a>' . $_SESSION['username'] . '</a></li>';
-                echo '<li><a href="logout.php"><span>Logout</span></a></li>';
-            }
-            else{
-                echo '<li><a href="login.php">Log In</a></li>';
-                echo '<li><a href="signup.php">Sign Up</a></li>';
-            }
+            $query = "SELECT * FROM Products WHERE product_id = 1";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result)
+
             ?>
-            
-            <li><input type="text" placeholder="Search... "></li>
+            <div class="column mix">
+                <form action="account.php" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="mix1.jpg" alt="Mix 1" style="width:100%">
+                        <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
+                        <p class="price"><?php echo $row["product_price"]; ?></p>
+                        <p><?php echo $row["product_des"]; ?></p>
+                        <input type="hidden" name="1" value="0">
+                        <button type="submit" class="button">ADD TO CART</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <?php
+                }
 
-        </ul>
+            $query = "SELECT * FROM Products WHERE product_id = 3";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result)
+
+            ?>
+
+            <div class="column mix">
+                <form action="account.php" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="mix2.jpg" alt="Mix 2" style="width:100%">
+                        <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
+                        <p class="price"><?php echo $row["product_price"]; ?></p>
+                        <p><?php echo $row["product_des"]; ?></p>
+                        <input type="hidden" name="3" value="0">
+                        <button type="submit" class="button">ADD TO CART</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <?php
+                }
+            ?>
+        </div>
+
+        <div class="storecards">
+            <?php
+            $query = "SELECT * FROM Products WHERE product_id = 4";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result)
+
+            ?>
+            <div class="column syrup">
+                <form action="account.php" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="syrup1.jpg" alt="Syrup 1" style="width:100%" />
+                        <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
+                        <p class="price"><?php echo $row["product_price"]; ?></p>
+                        <p><?php echo $row["product_des"]; ?></p>
+                        <input type="hidden" name="4" value="0">
+                        <button type="submit" class="button">ADD TO CART</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <?php
+                }
+
+            $query = "SELECT * FROM Products WHERE product_id = 5";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result)
+
+            ?>
+            <div class="column syrup">
+                <form action="account.php" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="syrup2.jpg" alt="Syrup 1" style="width:100%">
+                        <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
+                        <p class="price"><?php echo $row["product_price"]; ?></p>
+                        <p><?php echo $row["product_des"]; ?></p>
+                        <input type="hidden" name="5" value="0">
+                        <button type="submit" class="button">ADD TO CART</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <?php
+                }
+            ?>
+        </div>
+        <div class="storecards">
+            <?php
+            $query = "SELECT * FROM Products WHERE product_id = 6";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result)
+
+            ?>
+            <div class="column apparel">
+                <form action="account.php" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="shirt.jpg" alt="Shirt" style="width:100%">
+                        <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
+                        <p class="price"><?php echo $row["product_price"]; ?></p>
+                        <p><?php echo $row["product_des"]; ?></p>
+                        <input type="hidden" name="6" value="0">
+                        <button type="submit" class="button">ADD TO CART</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <?php
+                }
+            $query = "SELECT * FROM Products WHERE product_id = 7";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result)
+
+            ?>
+            <div class="column apparel">
+                <form action="account.php" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="hat.jpg" alt="Hat" style="width:100%" />
+                        <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
+                        <p class="price"><?php echo $row["product_price"]; ?></p>
+                        <p><?php echo $row["product_des"]; ?></p>
+                        <input type="hidden" name="7" value="0">
+                        <button type="submit" class="button">ADD TO CART</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <?php
+                }
+            ?>
+        </div>
     </div>
+    <script>
+        //filter
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
 
-    <div class="storecards">
-        <div class="column">
-            <form action="account.php" method="post">
-            <div class="card">
-                <img src="mix1.jpg" alt="Mix 1" style="width:100%" />
-                <h2>The Classic Mix</h2>
-                <p class="price">$9.99</p>
-                <p>Our classic pancake mix in a 5lb bag.</p>
-                <input type="hidden" name="id1" value="0"</>
-                <button type="submit">ADD TO CART</button>
-            </div>
-            </form>
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
 
-        </div>
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
 
-        <div class="column">
-            <form action="account.php" method="post">
-            <div class="card">
-                <img src="mix1.jpg" alt="Mix 1" style="width:100%" />
-                <h2>The Whole Mix</h2>
-                <p class="price">$9.99</p>
-                <p>Whole wheat pancake mix in a 5lb bag.</p>
-                <input type="hidden" name="id2" value="0"</>
-                <button type="submit">ADD TO CART</button>
-            </div>
-            </form>
+        //search
+        function myFunction() {
+            var input, filter, cards, cardContainer, h2, keep_card, card_titles, badge_texts, i, j;
 
-        </div>
+            input = document.getElementById("myFilter");
+            filter = input.value.toUpperCase();
+            cardContainer = document.getElementById("myProducts");
+            cards = cardContainer.getElementsByClassName("card");
+            for (i = 0; i < cards.length; i++) {
+                //We will switch keep_card to true if we find search text in badge or title
+                keep_card = false;
+                //querySelectorAll returns all elements of a.badge. querySelector returns only the first element
+                card_titles = cards[i].querySelectorAll(".card-body h2.card-title");
+                badge_texts = cards[i].querySelectorAll(".card-footer a.badge");
 
-        <div class="column">
-            <form action="account.php" method="post">
-            <div class="card">
-                <img src="syrup1.jpg" alt="Syrup 1" style="width:100%" />
-                <h2>The Classic Syrup</h2>
-                <p class="price">$7.99</p>
-                <p>Our classic maple syrup.</p>
-                <input type="hidden" name="id3" value="0"</>
-                <button type="submit">ADD TO CART</button>
-            </div>
-            </form>
+                //You must loop through all card titles.
+                for(j = 0; j < card_titles.length; j++) {
+                    if (card_titles[j].innerText.toUpperCase().indexOf(filter) > -1) {
+                        //Found search text, now lets switch keep_card on
+                        keep_card = true;
+                        //No need for further looping, we found the card, there we break loop
+                        break;
+                    }
+                }
 
-        </div>
+                if(!keep_card) {
+                    for(j = 0; j < badge_texts.length; j++) {
+                        if (badge_texts[j].innerText.toUpperCase().indexOf(filter) > -1) {
+                            keep_card = true;
+                            break;
+                        }
+                    }
+                }
 
-        <div class="column">
-            <form action="account.php" method="post">
-            <div class="card">
-                <img src="syrup1.jpg" alt="Syrup 1" style="width:100%" />
-                <h2>The Only Syrup</h2>
-                <p class="price">$7.99</p>
-                <p>Our locally sourced strawberry syrup.</p>
-                <input type="hidden" name="id4" value="0"</>
-                <button type="submit">ADD TO CART</button>
-            </div>
-            </form>
+                if(keep_card) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
 
-        </div>
-    </div>
-
+            }
+        }
+    
+    </script>
+    <?php
+        include('footer.php');
+    ?>
 </body>
 
 </html>

@@ -1,12 +1,11 @@
 ﻿<?php
-    include "products.php";
+    //include "products.php";
+    include "connect.php";
     session_start();
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     }
 
-    if(empty($_SESSION['cart'])) {
-        $_SESSION['cart']=array();
-    }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,71 +30,101 @@
             margin: 0;
             padding: 0;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .storecards {
+            margin: 12px -5px;
+
+        }
+
+        .storecards:after {
+            content: "";
+            display: table;
+            clear: both;
+
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            background-color: #eeeeee;
+            width: 400px;
+        }
+
+        align {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+
     </style>
 
 </head>
 
 <body>
 
-    <h1>Montana Pancake Co</h1>
+    <?php
+        include('header.php');
+        include('connect.php');
+        if(empty($_SESSION['cart'])) {
+            $_SESSION['cart']=array();
+        }
+    ?>
 
-   <div class="topnav">
-        <ul>
+    <h2><center>Your Cart:<br></center></h2>
 
-            <li><a class="active" href="index.php">Home</a></li>
-
-            <li><a href="store.php">Store</a></li>
-
-            <li><a href="about.php">About</a></li>
-
-            <li><a href="contact.php">Contact</a></li>
-
-            <li><a href="account.php">Cart</a></li>
-
-            <?php
-            if($_SESSION['loggedin']==true){
-                echo '<li><a>' . $_SESSION['username'] . '</a></li>';
-                echo '<li><a href="logout.php"><span>Logout</span></a></li>';
-            }
-            else{
-                echo '<li><a href="login.php">Log In</a></li>';
-                echo '<li><a href="signup.php">Sign Up</a></li>';
-            }
-            ?>
-            
-            <li><input type="text" placeholder="Search... "></li>
-
-        </ul>
-    </div>
-
-    <h1>Your Cart:<br></h1>
 
     <?php
-    
-    if (isset($_POST['id1'])){
+
+    $total = 0;
+    $qty1 = 0;
+    $qty2 = 0;
+    $qty3 = 0;
+    $qty4 = 0;
+    $qty5 = 0;
+    $qty6 = 0;
+
+
+    if (isset($_POST['1'])){
         array_push($_SESSION['cart'], $_SESSION['products'][0]);
     }
     
-    if (isset($_POST['id2'])){
+    if (isset($_POST['3'])){
         array_push($_SESSION['cart'], $_SESSION['products'][1]);
     }
 
-    if (isset($_POST['id3'])){
+    if (isset($_POST['4'])){
         array_push($_SESSION['cart'], $_SESSION['products'][2]);
     }
 
-    if (isset($_POST['id4'])){
+    if (isset($_POST['5'])){
         array_push($_SESSION['cart'], $_SESSION['products'][3]);
     }
+
+    if (isset($_POST['6'])){
+        array_push($_SESSION['cart'], $_SESSION['products'][4]);
+    }
+
+    if (isset($_POST['7'])){
+        //if(!in_array(, $_SESSION['cart]'])){
+            array_push($_SESSION['cart'], $_SESSION['products'][5]);
+        //}
+    }
     
-    $total = 0;
+
+
+    print_r(($_SESSION['cart']));
 
     if(isset($_SESSION['cart'])){
         foreach($_SESSION['cart'] as $product){
-            echo '<div>';
+            echo '<div class="storecards">';
+            echo '<div class="card">';
             echo '<img src="';
             echo $product->photo;
-            echo '" style="width:20%"/>';
+            echo '" style="height:150px"/>';
             echo '<h2>';
             echo $product->name;
             echo '</h2>';
@@ -107,24 +136,35 @@
             echo $product->price;
             echo '</h3>';
             echo '<br>';
-
-            echo '<br>';
+            echo '<h3>Quantity: ';
+            echo $qty1;
+            echo '</h3>';
+            echo '</div>';
             echo '</div>';
             $total = $total + $product->price;
+
         }
     }
     
-    echo 'Your total is $' . $total;
+    echo '<h2><center>Your total is $' . $total .'</center></h2>';
+
+
+    //$sql = SELECT * FROM Products WHERE 
 
     ?>
 
-    <form action="submitorder.php" method="post" style="border:1px solid #ccc">
+    <form action="submitorder.php" method="post">
         <div class="container">
-        <button>Submit Order</button></a>
+        <button class="submitbutton">Submit Order</button>
         </div>
     </form>
 
-    <a href="store.php"><button>Continue Shopping</button></a>
+    <div class="container" style="text-align: center">
+        <a href="store.php"><button class="submtibutton">Continue Shopping</button></a>
+    </div>
+    <?php
+        include('footer.php');
+    ?>
 </body>
 
 </html>

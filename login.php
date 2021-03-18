@@ -3,12 +3,47 @@
     $_SESSION['loggedin'] = false;
     $_SESSION['username'] = '';
 
+
+
     if ($_SERVER['REQUEST_METHOD']=='POST') {
 
+        include('connect.php');
+
         if(!empty($_POST['username']) && !empty($_POST['psw'])) {
-            setcookie('Jacob', 'Bexten', time()+3600);
-            $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $_POST['username'];
+
+            $u = mysqli_real_escape_string($conn,$_POST['username']);
+            $p = mysqli_real_escape_string($conn,$_POST['psw']);
+
+            $sql = "SELECT * FROM Users WHERE username = '$u' and password = '$p'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+            $count = mysqli_num_rows($result);
+         
+            if($count == 1) {
+                $_SESSION['username'] = $u;
+                $_SESSION['loggedin'] = true;
+            }
+            else {
+                //error message if username or password is not empty
+                print'<div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span> 
+                <strong>Log In failed.</strong> Please make sure your username or password is correct.
+                </div>';
+                print'<script>
+                    var close = document.getElementsByClassName("closebtn");
+                    var i;
+
+                    for (i = 0; i < close.length; i++) {
+                        close[i].onclick = function(){
+                            var div = this.parentElement;
+                            div.style.opacity = "0";
+                            setTimeout(function(){ div.style.display = "none"; }, 600);
+                        }
+                    }
+                    </script>';
+                }
+            $conn->close();
         }
     }
 
@@ -38,43 +73,12 @@
 </head>
 
 <body>
-
-    <h1>Montana Pancake Co</h1>
-
-    <div class="topnav">
-        <ul>
-
-            <li><a class="active" href="index.php">Home</a></li>
-
-            <li><a href="store.php">Store</a></li>
-
-            <li><a href="about.php">About</a></li>
-
-            <li><a href="contact.php">Contact</a></li>
-
-            <li><a href="account.php">Cart</a></li>
-
-            <?php
-            if($_SESSION['loggedin']==true){
-                echo '<li><a>' . $_SESSION['username'] . '</a></li>';
-                echo '<li><a href="logout.php"><span>Logout</span></a></li>';
-            }
-            else{
-                echo '<li><a href="login.php">Log In</a></li>';
-                echo '<li><a href="signup.php">Sign Up</a></li>';
-            }
-            ?>
-            
-            <li><input type="text" placeholder="Search... "></li>
-
-        </ul>
-    </div>
     
     <?php
-
+    include('header.php');
 
     if ($_SESSION['loggedin']==true) {
-        print '<h2>You are now logged in</h2>';
+        print '<h2>You are now logged in!</h2>';
     }
 
     else{
@@ -96,6 +100,8 @@
         </div>
     </form>';
     }
+
+    include('footer.php');
     ?>
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿<?php
+    include 'connect.php';
     session_start();
     $_SESSION['loggedin'] = true;
 
@@ -8,8 +9,8 @@
             setcookie('Jacob', 'Bexten', time()+3600);
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $_POST['username'];
+        }
     }
-}
 
 ?>
 
@@ -51,24 +52,28 @@
 
             <li><a href="contact.php">Contact</a></li>
 
-            <li><a href="account.php">Account</a></li>
+            <li><a href="account.php">Cart</a></li>
 
             <?php
             if($_SESSION['loggedin']==true){
-                echo '<li><a>' . $_SESSION['username'] . '</a></li>';
-                echo '<li><a href="logout.php"><span>Logout</span></a></li>';
+            echo '
+            <li><a>' . $_SESSION['username'] . '</a></li>';
+            echo '
+            <li><a href="logout.php"><span>Logout</span></a></li>';
             }
             else{
-                echo '<li><a href="login.php">Log In</a></li>';
-                echo '<li><a href="signup.php">Sign Up</a></li>';
+            echo '
+            <li><a href="login.php">Log In</a></li>';
+            echo '
+            <li><a href="signup.php">Sign Up</a></li>';
             }
             ?>
-            
-            <li><input type="text" placeholder="Search... "></li>
+
 
         </ul>
     </div>
 
-<h2>Thanks for signing up!</p>
+    <h2>Thanks for signing up!</h2>
+
 </body>
 </html>

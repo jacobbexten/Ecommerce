@@ -7,7 +7,6 @@ class product {
     public $description;
     public $price;
     public $photo;
-    //public $tags;
 
     public function __construct(string $name,int $id,string $description,float $price,string $photo){
         $this->name = $name;
@@ -15,7 +14,9 @@ class product {
         $this->description = $description;
         $this->price = $price;
         $this->photo = $photo;
-        //$this->tags = $tags;
     }
 }
+
+
+
 ?>
