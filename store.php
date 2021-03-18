@@ -113,7 +113,7 @@
                 <form action="account.php" method="post">
                 <div class="card">
                     <div class="card-body">
-                        <img src="mix1.jpg" alt="Mix 1" style="width:100%">
+                        <img src="Mix1.jpg" alt="Mix 1" style="width:100%">
                         <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
                         <p class="price"><?php echo $row["product_price"]; ?></p>
                         <p><?php echo $row["product_des"]; ?></p>
@@ -137,7 +137,7 @@
                 <form action="account.php" method="post">
                 <div class="card">
                     <div class="card-body">
-                        <img src="mix2.jpg" alt="Mix 2" style="width:100%">
+                        <img src="Mix2.jpg" alt="Mix 2" style="width:100%">
                         <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
                         <p class="price"><?php echo $row["product_price"]; ?></p>
                         <p><?php echo $row["product_des"]; ?></p>
@@ -164,7 +164,7 @@
                 <form action="account.php" method="post">
                 <div class="card">
                     <div class="card-body">
-                        <img src="syrup1.jpg" alt="Syrup 1" style="width:100%" />
+                        <img src="Syrup1.jpg" alt="Syrup 1" style="width:100%" />
                         <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
                         <p class="price"><?php echo $row["product_price"]; ?></p>
                         <p><?php echo $row["product_des"]; ?></p>
@@ -187,7 +187,7 @@
                 <form action="account.php" method="post">
                 <div class="card">
                     <div class="card-body">
-                        <img src="syrup2.jpg" alt="Syrup 1" style="width:100%">
+                        <img src="Syrup2.jpg" alt="Syrup 1" style="width:100%">
                         <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
                         <p class="price"><?php echo $row["product_price"]; ?></p>
                         <p><?php echo $row["product_des"]; ?></p>
@@ -213,7 +213,7 @@
                 <form action="account.php" method="post">
                 <div class="card">
                     <div class="card-body">
-                        <img src="shirt.jpg" alt="Shirt" style="width:100%">
+                        <img src="Shirt.jpg" alt="Shirt" style="width:100%">
                         <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
                         <p class="price"><?php echo $row["product_price"]; ?></p>
                         <p><?php echo $row["product_des"]; ?></p>
@@ -235,7 +235,7 @@
                 <form action="account.php" method="post">
                 <div class="card">
                     <div class="card-body">
-                        <img src="hat.jpg" alt="Hat" style="width:100%" />
+                        <img src="Hat.jpg" alt="Hat" style="width:100%" />
                         <h2 class="card-title"><?php echo $row["product_name"]; ?></h2>
                         <p class="price"><?php echo $row["product_price"]; ?></p>
                         <p><?php echo $row["product_des"]; ?></p>

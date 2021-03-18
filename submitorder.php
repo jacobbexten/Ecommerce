@@ -34,6 +34,21 @@
             margin: 0;
             padding: 0;
         }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
     </style>
 </head>
 
@@ -73,10 +88,33 @@
         </ul>
     </div>
 
-    <h2>Thanks for submitting your order. We will send you an email confirmation shortly.</p>
-
+    <h2>Thanks for submitting your order. We will send you an email confirmation shortly.</h2>
     <?php
-    unset($_SESSION['cart']);
+    //unset($_SESSION['cart']);
+    print_r(($_SESSION['cart']));
     ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <?php foreach($_SESSION['cart'] as $key=>$value){ ?>
+                <td> <?php echo $value['product_name']; ?> </td>
+                <td> $<?php echo $value['product_price']; ?> </td>
+                <td> <?php echo $value['0']; ?> </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <div class="container" style="text-align: center">
+        <a href="print_order.php"><button class="submtibutton" style="width:400px">Print Order</button></a>
+    </div>
 </body>
 </html>

@@ -6,11 +6,6 @@
     //$password = "kaiboop4oegooneec0caiPaef2sha4";
     $database = "jb110725";
 
-//local database
-    //$servername = "localhost";
-    //$username = "root";
-    //$password = "";
-    //$database = "pancakes";
 
 //create connection
     $conn = new mysqli($servername, $username, $password, $database);
@@ -18,18 +13,6 @@
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-
-
-//insert into table
-    /*$sql = "INSERT INTO Products (product_name, product_des, product_price) VALUES ('Pancake Wizard', 'Adjustable pancake hat for wizards', '18.99')";
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    }
-    else {
-        echo "Error: " . $sql . "
-<br>" . $conn->error;
-    }
-*/
 
 //select query
     $sql = "SELECT product_id, product_name, product_des, product_price FROM Products";
