@@ -90,7 +90,6 @@
 
     <h2>Thanks for submitting your order. We will send you an email confirmation shortly.</h2>
     <?php
-    //unset($_SESSION['cart']);
     print_r(($_SESSION['cart']));
     ?>
     <table>
@@ -116,5 +115,8 @@
     <div class="container" style="text-align: center">
         <a href="print_order.php"><button class="submtibutton" style="width:400px">Print Order</button></a>
     </div>
+    <?php
+        unset($_SESSION['cart']);
+    ?>
 </body>
 </html>

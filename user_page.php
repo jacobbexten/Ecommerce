@@ -43,23 +43,21 @@
 
         $username = $row['username'];
         $email = $row['email'];
-        $password = $row['password'];
 
         echo '<div class="user-container">';
         echo '<h2>Email: ' . $email . '</h2>';
         echo '<h2>Username: ' . $username . '</h2>';
-        echo '<h2>Password: ' . $password . '</h2>';
-        echo '<button type="submit" class="signupbtn">Show Previous Orders</button>';
         echo '</div>';
         $conn->close();
 
     ?>
 
     <center><div class="btn-group" style="width:80%">
-        <button onclick="window.location.href='change_email.php';" style="width:10%" class="btn">Change Email</button></a>
-        <button onclick="window.location.href='change_username.php';" style="width:10%" class="btn">Change Username</button></a>
-        <button onclick="window.location.href='change_password.php';" style="width:10%" class="btn">Change Password</button></a>
-        </div></center>
+    <button onclick="window.location.href='change_email.php';" style="width:10%" class="btn">Change Email</button></a>
+    <button onclick="window.location.href='change_username.php';" style="width:10%" class="btn">Change Username</button></a>
+    <button onclick="window.location.href='change_password.php';" style="width:10%" class="btn">Change Password</button></a>
+    <button onclick="window.location.href='previous_orders.php';" style="width:10%" class="btn">Previous Orders</button></a>
+</div></center>
     <?php
         include('footer.php');
     ?>

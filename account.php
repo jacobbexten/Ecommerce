@@ -209,9 +209,9 @@
             echo '<form action="account.php" method="POST">';
             echo '<div class="btn-group" style="width:100%" id="myBtnContainer">';
             echo '<input type="hidden" name="' . $key . '">';
-            echo '<button class="btn" name="dec" style="width:1%">-</button>';
-            echo '<button class="btn" style="width:80%">Remove</button>';
-            echo '<button type="submit" class="btn" name="inc" style="width:1%">+</button>';
+            echo '<button class="btn" style="background-color:#d9d9d9;color:black" name="dec">-</button>';
+            echo '<button class="btn" style="background-color:#bfbfbf;color:black" >Remove</button>';
+            echo '<button type="submit" class="btn" style="background-color:#d9d9d9;color:black" name="inc">+</button>';
             echo '</div>';
             echo '</form>';
             echo '</div>';

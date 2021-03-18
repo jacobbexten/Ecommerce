@@ -49,16 +49,13 @@
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        echo 'THIS WORKS';
         $newemail= $_POST["new_email"];
-
-        echo $newemail;
-        echo $user;
-
 
         $sql = "UPDATE Users SET email='$newemail' WHERE username='$user'";
         if(mysqli_query($conn, $sql)){
-            echo "UPDATED";
+            echo '<center><h2>Email changed successfully</h2></center>';
+
+            header("Refresh:2");
         }
         else {
             echo "ERROR";

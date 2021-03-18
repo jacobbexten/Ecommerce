@@ -39,11 +39,11 @@
     $result = $conn->query($sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-    $email = $row['email'];
+    $username = $row['username'];
 
 
     echo '<div class="user-container">';
-    echo '<h2>Email: ' . $email . '</h2>';
+    echo '<h2>Username: ' . $user . '</h2>';
     echo '</div>';
 
 
@@ -51,16 +51,16 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $newuser= $_POST["new_user"];
 
-        echo $newuser;
-        echo $user;
-
-
-        $sql = "UPDATE Users SET user='$newuser' WHERE username='$user'";
+        $sql = "UPDATE Users SET username='$newuser' WHERE username='$user'";
         if(mysqli_query($conn, $sql)){
-            echo "UPDATED";
+            echo '<center><h2>Username changed successfully</h2></center>';
+
+            $_SESSION['username'] = $newuser;
+
+            header("Refresh:2");
         }
         else {
-            echo "ERROR";
+            echo "Could not process...";
             $conn->error;
         }
 
@@ -70,9 +70,9 @@
 
     print'
     <center>
-        <form action="change_email.php" method="POST" style="width:50%">
+        <form action="change_username.php" method="POST" style="width:50%">
             <div>
-                <input type="text" placeholder="Enter New Email..." name="new_user" required>
+                <input type="text" placeholder="Enter New Username..." name="new_user" required>
                 <button type="submit" class="signupbtn">Submit</button>
             </div>
 
